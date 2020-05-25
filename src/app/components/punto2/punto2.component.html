@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto2</title>
+    <link rel="stylesheet" type="text/css" href="./punto2.component.css" />
+  </head>
+  <body>
+    <div class="container col-md-12">
+      <form class="p-5 m-5" id="punto2fondo" #formregistro="ngForm">
+        <div><h4 align="center">Informacion de asistentes</h4></div>
+        <div class="form-group">
+          <label for="idusuario">Usuario:</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="asistente.usuario"
+            id="idusuario"
+            required="required"
+            name="idusuario"
+            aria-describedby="emailHelp"
+            required="required"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >No compartiremos tu email con nadie más.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="idnombreOrg">Nombre de la Organizacion:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="idnombreOrg"
+            name="idnombreOrg"
+            required="required"
+            [(ngModel)]="asistente.nombreOrg"
+            required="required"
+          />
+        </div>
+        <div class="custom-control custom-checkbox mb-3" for="idrequiereCons">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="idrequiereCons"
+            name="idrequiereCons"
+            [(ngModel)]="asistente.requiereCons"
+          />
+          <label class="custom-control-label" for="idrequiereCons"
+            >Requiere Constancia</label
+          >
+        </div>
+        <div class="col-md-12 col-12 ml-2">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="guardarAsistente()"
+            [disabled]="!formregistro.form.valid"
+          >
+            Agregar Asistente
+          </button>
+        </div>
+      </form>
+    </div>
+    <br />
+
+    <div class="table-responsive col-md-12" id="fondotable">
+      <table
+        class="table table-striped"
+        [mfData]="asistentes"
+        #mf="mfDataTable"
+        [mfRowsOnPage]="1"
+      >
+        <thead>
+          <tr>
+            <th
+              scope="col"
+              class="bg-warning"
+              colspan="4"
+              style="text-align: center;"
+            >
+              Asistentes
+            </th>
+          </tr>
+          <tr>
+            <th scope="col">
+              <mfDefaultSorter by="name">#</mfDefaultSorter>
+            </th>
+            <th scope="col">
+              <mfDefaultSorter by="email">Usuario</mfDefaultSorter>
+            </th>
+            <th scope="col">
+              <mfDefaultSorter by="age"
+                >Nombre de la Organizacio</mfDefaultSorter
+              >
+            </th>
+            <th scope="col">
+              <mfDefaultSorter by="city">Requiere Constancia</mfDefaultSorter>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let punto2 of mf.data">
+            <th scope="row">-</th>
+            <td>{{ punto2.usuario | titlecase }}</td>
+            <td>{{ punto2.nombreOrg | uppercase }}</td>
+            <td>
+              <i *ngIf="punto2.requiereCons == true; else elseTemplate"
+                >Si requiere</i
+              >
+              <ng-template #elseTemplate><i>No requiere</i> </ng-template>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <mfBootstrapPaginator
+                [rowsOnPageSet]="[1, 3, 5]"
+              ></mfBootstrapPaginator>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <br />
+    </div>
+  </body>
+</html>

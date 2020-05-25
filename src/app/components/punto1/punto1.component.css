@@ -1,0 +1,31 @@
+#caracteres {
+  margin-left: 70%;
+  width: 40%;
+  color: white;
+}
+#titulomensaje {
+  background-color: rgb(46, 55, 136);
+  width: 34%;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  font-size: 14pt;
+  font-family: cursive;
+  color: white;
+}
+#botonevi {
+  background-color: rgb(46, 55, 136);
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  width: 28%;
+  color: white;
+  font-size: 12pt;
+  font-family: cursive;
+}
+#formulario {
+  background-image: url(../../../assets/Imagenes/Mensajesfondoo.png);
+}
+body {
+  background-color: rgb(rgba(255, 255, 255, 0));
+  overflow-x: hidden;
+  background-size: cover;
+}

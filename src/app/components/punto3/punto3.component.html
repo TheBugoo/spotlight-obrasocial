@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto3</title>
+    <link rel="stylesheet" type="text/css" href="./punto3.component.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form
+        #formregistro="ngForm"
+        class="col-md-10 col-10 offset-1 pt-5 pl-5"
+        method="post"
+        action=""
+      >
+        <h2
+          class="text-center pb-4"
+          style="
+            font-family: 'Times New Roman', Times, serif;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+          "
+        >
+          COMPRA DE PASAJES
+        </h2>
+        <div class="form-group row">
+          <label for="idDni" class="col-md-4"><u>DNI del Pasajero:</u></label>
+          <input
+            id="idDni"
+            class="form-control form-control-sm col-11 col-xs-11 col-sm-11 col-md-7"
+            type="number"
+            required="required"
+            name="idDni"
+            [(ngModel)]="pasaje.dniPasajero"
+            #idDni="ngModel"
+            placeholder="Ingrese su DNI"
+          />
+          <div
+            *ngIf="idDni.invalid && (idDni.dirty || idDni.touched)"
+            class="alert alert-danger col-md-11 col-11"
+            align="center"
+          >
+            <div *ngIf="idDni.errors.required">
+              DNI es campo requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="idPreciopa" class="col-md-4"
+            ><u> Precio del Pasaje</u></label
+          >
+          <span class="input-group-addon">$</span>
+          <input
+            id="idPreciopa"
+            class="form-control form-control-sm col-11 col-xs-11 col-sm-11 col-md-7"
+            type="number"
+            placeholder="Ingrese precio del pasaje"
+            name="idPreciopa"
+            required="required"
+            #idPreciopa="ngModel"
+            [(ngModel)]="pasaje.precioPasaje"
+          />
+          <div
+            *ngIf="
+              idPreciopa.invalid && (idPreciopa.dirty || idPreciopa.touched)
+            "
+            class="alert alert-danger col-md-11 col-11"
+            align="center"
+          >
+            <div *ngIf="idPreciopa.errors.required">
+              Ingrese Precio
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="idcategoria" class="col-md-4"
+            ><u>Categoria de Pasajero:</u>
+          </label>
+          <select
+            class="custom-select form-control col-11 col-xs-11 col-sm-11 col-md-7"
+            id="idcategoria"
+            #idcategoria="ngModel"
+            required="required"
+            name="idcategoria"
+            [(ngModel)]="pasaje.categoriaPasajero"
+            (change)="precioSegunCategoria()"
+          >
+            <option disabled selected
+              >Selecciona una categoria de pasajero</option
+            >
+            <option value="m">Menor</option>
+            <option value="a">Adulto</option>
+            <option value="j">Jubilado</option>
+          </select>
+          <div
+            *ngIf="
+              idcategoria.invalid && (idcategoria.dirty || idcategoria.touched)
+            "
+            class="alert alert-danger col-md-11 col-11"
+            align="center"
+          >
+            <div *ngIf="idcategoria.errors.required">
+              Elija una Categoria de Pasajero
+            </div>
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <div
+            class="alert alert-success"
+            id="idcosto"
+            role="alert"
+            *ngIf="show"
+          >
+            <label for="idcosto"
+              >Costo Total del Boleto: ${{ descuento }}</label
+            >
+          </div>
+          <div class="col-md-12 col-12">
+            <button
+              class="btn btn-primary ml-2 mr-2"
+              (click)="precioSegunCategoria()"
+              (click)="guardarPasaje()"
+              [disabled]="!formregistro.form.valid"
+            >
+              Comprar
+            </button>
+            <button class="btn btn-secondary ml-2 mr-2" (click)="cleanPasaje()">
+              Limpiar
+            </button>
+            <button
+              class="btn btn-secondary ml-2 mr-2"
+              (click)="modificarPasaje()"
+            >
+              Modificar
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <table
+        class="table table-striped col-md-12"
+        [mfData]="pasajes"
+        #mf="mfDataTable"
+        id="tablea"
+        [mfRowsOnPage]="4"
+      >
+        <thead>
+          <tr>
+            <th scope="col">DNI</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Precio Total</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let punto3 of mf.data">
+            <th scope="row">{{ punto3.dniPasajero }}</th>
+            <td>{{ punto3.categoriaPasajero }}</td>
+            <td>{{ punto3.preciototal | currency: "USD" }}</td>
+            <td>{{ punto3.fechaCompra | date: "dd/MM/yyyy" }}</td>
+            <td align="center">
+              <button
+                class="btn btn-primary ml-2 mr-2"
+                (click)="borrarPasaje(punto3)"
+              >
+                BORRAR
+              </button>
+              <button
+                class="btn btn-primary ml-2 mr-2"
+                (click)="seleccionarPasaje(punto3)"
+              >
+                SELECT
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <mfBootstrapPaginator
+                [rowsOnPageSet]="[4, 8, 12]"
+              ></mfBootstrapPaginator>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </body>
+</html>

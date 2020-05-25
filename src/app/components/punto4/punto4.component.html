@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>punto4</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="bg-aqua mt-4 col-md-12" id="puntajvid">
+        <header class="row">
+          <div class="col-6 col-md-6 pl-5">
+            <p id="vidpun">
+              <strong> Vidas: {{ vidas }}</strong>
+            </p>
+          </div>
+          <div class="col-6 col-md-6">
+            <p id="vidpun">
+              <strong> Puntaje:{{ puntos }}</strong>
+            </p>
+          </div>
+        </header>
+      </div>
+      <div class="row" id="imagenes">
+        <img
+          class="col-md-12 justify-content-center"
+          src="assets/Imagenes/{{ palabra.imagen }}"
+        />
+      </div>
+      <div class="row">
+        <content class="col-md-12 col-12">
+          <div class="row">
+            <div class="card-group" style="width: 100%;">
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 1"
+                class="col-md-3"
+                maxlength="1"
+                name="letra0"
+                id="letra0"
+                required
+                [(ngModel)]="letra0"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 2"
+                class="col-md-3"
+                maxlength="1"
+                name="letra1"
+                id="letra1"
+                required
+                [(ngModel)]="letra1"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 3"
+                class="col-md-3"
+                maxlength="1"
+                name="letra2"
+                id="letra2"
+                required
+                [(ngModel)]="letra2"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 4"
+                class="col-md-3"
+                maxlength="1"
+                name="letra3"
+                id="letra3"
+                required
+                [(ngModel)]="letra3"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 5"
+                class="col-md-3"
+                maxlength="1"
+                name="letra4"
+                id="letra4"
+                required
+                [(ngModel)]="letra4"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 6"
+                class="col-md-3"
+                maxlength="1"
+                name="letra5"
+                id="letra5"
+                required
+                [(ngModel)]="letra5"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 7"
+                class="col-md-3"
+                maxlength="1"
+                name="letra6"
+                id="letra6"
+                required
+                [(ngModel)]="letra6"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <input
+                type="text"
+                *ngIf="enIngles.length >= 8"
+                class="col-md-3"
+                maxlength="1"
+                name="letra7"
+                id="letra7"
+                required
+                [(ngModel)]="letra7"
+                (ngModelChange)="asignarLetras()"
+                value=""
+              />
+              <button
+                type="button"
+                class="btn btn-danger col-12 col-md-12 mt-4 mb-2"
+                align="center"
+                (click)="comprobar()"
+              >
+                PROBAR
+              </button>
+            </div>
+          </div>
+        </content>
+
+        <div class="bg-aqua mt-4 col-md-12" id="puntajvid">
+          <div class="row">
+            <div class="col-12 col-md-12 pl-5" id="vidpun">
+              <div class="justify-content-center">
+                <p style="font-size: 20pt; position: relative; left: 35%;">
+                  <strong> {{ palabra.espanol }} </strong>
+                </p>
+              </div>
+            </div>
+            <aside class="col-md-12 col-12">
+              <button
+                type="button"
+                class="btn btn-danger col-1 col-md-1 m-2 d-none"
+                align="center"
+                *ngFor="let item of abecedario"
+                (click)="GuardarPalabra(item)"
+              >
+                {{ item }}
+              </button>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

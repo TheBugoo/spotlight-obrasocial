@@ -1,0 +1,12 @@
+#navba {
+  background-image: url(../../../assets/Imagenes/header.png);
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+#navbarText {
+  position: relative;
+  margin-left: 25%;
+}
+body {
+  background-color: rgba(red, rgba(189, 189, 189, 0), blue, alpha);
+}

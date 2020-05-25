@@ -1,0 +1,11 @@
+body {
+  background-size: cover;
+  background-image: url(../../../assets/Imagenes/body5.jpg);
+  overflow-x: hidden;
+}
+#punto2fondo {
+  background-color: rgba(158, 157, 157, 0.3);
+}
+#fondotable {
+  background-color: rgba(252, 244, 244, 0.3);
+}

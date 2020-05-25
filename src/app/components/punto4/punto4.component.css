@@ -1,0 +1,25 @@
+#puntajvid {
+  border: black;
+  border-style: double;
+}
+#vidpun {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17pt;
+  position: relative;
+  top: 9px;
+  left: 50px;
+}
+body {
+  background-image: url(../../../assets/Imagenes/fondoCrucigrama.jpg);
+  background-size: cover;
+  padding-top: 5px;
+}
+#imagenes img {
+  padding: 15px;
+  height: 600px;
+}
+#imagenes {
+  padding-left: 80px;
+  padding-right: 80px;
+  justify-content: center;
+}
